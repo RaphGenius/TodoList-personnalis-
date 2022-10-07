@@ -4,6 +4,7 @@ const input = document.querySelector(".input-todo");
 const buttonForm = document.querySelector(".button-todo");
 //Message d'erreur
 const errorMsg = document.querySelector(".errorMsg");
+
 buttonForm.addEventListener("click", createCard);
 
 const todoContainer = document.querySelector(".container-todos");
@@ -23,10 +24,16 @@ function createCard(e) {
     }, 2000);
     return;
   }
+  createTodo(input.value);
+  addLocalStorage(input.value);
+
+  input.value = "";
+}
+function createTodo(data) {
   errorMsg.textContent = "";
   const card = document.createElement("div");
   card.classList.add("todo-items");
-  card.textContent = input.value;
+  card.textContent = data;
 
   const thing = document.createElement("div");
   thing.classList.add("thing-todo");
@@ -47,21 +54,17 @@ function createCard(e) {
   card.appendChild(thing);
   card.appendChild(groupBtn);
   todoContainer.appendChild(card);
-  let lsArray;
-
-  addLocalStorage(input.value);
-  input.value = "";
 }
-
 todoContainer.addEventListener("click", makeItemDone);
 
 function makeItemDone(e) {
   const item = e.target;
-  console.log(item);
+  const parent = item.closest(".todo-items");
+
   if (item.classList[0] === "remove-things") {
-    item.parentElement.parentElement.remove();
+    removeFromLocalStorage(parent.innerText);
+    parent.remove();
   } else if (item.classList[0] === "done-things") {
-    const parent = item.closest(".todo-items");
     parent.classList.toggle("done");
   }
 }
@@ -75,4 +78,23 @@ function addLocalStorage(data) {
   }
   todos.push(data);
   localStorage.setItem("todos", JSON.stringify(todos));
+}
+cardFromLocalStorage();
+function cardFromLocalStorage() {
+  let todos;
+  if (!localStorage.getItem("todos")) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.forEach((todo) => {
+    createTodo(todo);
+  });
+}
+
+function removeFromLocalStorage(data) {
+  todos = JSON.parse(localStorage.getItem("todos"));
+  const newTodos = todos.filter((el) => el != data);
+  localStorage.setItem("todos", JSON.stringify(newTodos));
+  console.log(newTodos);
 }
