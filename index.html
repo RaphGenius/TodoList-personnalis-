@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Ma<span>TodoList</span></h1>
+    <form>
+      <label for="todo">Qu'ai-je à faire ?</label>
+      <input class="input-todo" id="todo" type="text" />
+      <button class="button-todo" autocomplete="off">Ajouter</button>
+    </form>
+    <div class="container-todos">
+      <h2>Les choses à faire :</h2>
+      <div class="todo-items">
+        <div class="thing-todo">Manger</div>
+
+        <div class="group-btn-todo">
+          <button class="done-things">V</button>
+          <button class="remove-things">X</button>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
