@@ -28,6 +28,7 @@ form {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 form input {
   margin: 20px 0 20px 0;
@@ -57,12 +58,21 @@ form button:hover {
   background: #c6fffa;
   box-shadow: 0 0 15px #ffe0c6;
 }
+.errorMsg {
+  position: absolute;
+  bottom: -35px;
+  text-align: center;
+  opacity: 1;
+  transition: all 2000ms;
+}
+
 .container-todos {
   text-align: center;
   width: 30%;
   margin: 0 auto;
 }
-.container-todos h2 {
+h2 {
+  text-align: center;
   margin: 50px 0px 20px;
 }
 .todo-items {
@@ -71,7 +81,13 @@ form button:hover {
   margin: 10px auto;
   box-shadow: 0px 0px 15px rgb(0, 0, 0, 0.2);
   border: 1px solid #ffe0c6;
+  width: 100%;
   max-width: 400px;
+  padding-left: 10px;
+  transition: all 200s ease-in;
+}
+.done {
+  text-decoration: line-through;
 }
 .thing-todo {
   flex: 1;
